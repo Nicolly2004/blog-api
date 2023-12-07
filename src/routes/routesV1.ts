@@ -2,6 +2,11 @@ import express from 'express'
 
 const routesV1 = express.Router();
 
+routesV1.post("/users/login",(req,res) => {
+    res.send("Realiza Login.")
+});
+
+
 routesV1.post("/users",(req,res) => {
     res.send("Cadastra um usuário.")
 });
@@ -10,9 +15,6 @@ routesV1.get("/users",(req,res) => {
     res.send("Lista todos os usuários.")
 });
 
-routesV1.post("/users/login",(req,res) => {
-    res.send("Realiza Login.")
-});
 
 routesV1.get("/users/:id",(req,res) => {
     res.send("Lista usuários por id.")
