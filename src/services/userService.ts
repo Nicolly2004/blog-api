@@ -19,9 +19,10 @@ export class UserService {
         return this.prisma.user.findMany();
     }
 
-    
+
     async createUser(data:StoreUser): Promise<User>{
         data.password = await this.passwordEncoder.encode(data.password);
+        const dateArray = data.birthDate
         return this.prisma.user.create({ data });
     }
 

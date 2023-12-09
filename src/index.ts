@@ -7,6 +7,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+
+
 app.use(
    cors({
      origin: ["*"],
@@ -35,7 +37,7 @@ app.use((req,res) => {
 
 app.listen(process.env.PORT,() => {
     console.log(
-        `Servdor executando em: ${process.env.HOST}: ${process.env.PORT}`
+        `Servidor executando em: ${process.env.HOST}: ${process.env.PORT}`
     );
 });
 

@@ -4,9 +4,9 @@ Content-Type: application/json
 {
     "name": "Nicolly Reis",
     "birthDate": "2004-09-20",
-    "email": "nicolly123@gmail.com",
+    "email": "nicolly124@gmail.com",
     "password": "123456789",
-    "gender": "Male" //Malse | Female
+    "gender": "Male" 
 }
 ### 
 
@@ -22,5 +22,5 @@ Content-Type: application/json
 GET http://127.0.0.1:3000/api/v1/users HTTP/1.1
 ###
 
-GET http://127.0.0.1:3000/api/v1/users/1 HTTP/1.1
+GET http://127.0.0.1:3000/api/v1/users/5c09630e-499c-4ada-a3de-61743412c842 HTTP/1.1
 ###
