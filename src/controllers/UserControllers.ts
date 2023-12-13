@@ -1,7 +1,6 @@
 import { User } from '@prisma/client';
 import { UserService } from '../services/userService';
 import { Request,Response } from "express";
-import { checkSchema, validationResult } from 'express-validator';
 
 
 const userService: UserService = new UserService();
@@ -12,81 +11,15 @@ export const getUsers = async (request: Request, response: Response): Promise<Re
 }
 
 export const getUser = async (request: Request, response: Response): Promise<Response> => {
-    const id:string = request.params.id;
-        try {
-            const user: User = await userService.getUserById(id);
-            return response.status(200).json(user);
-        }catch (e: any) {
-            return response.status(404).json({
-                message: e.message,
-            });
-        }
+    const id:string = request.params.id;  
+    const user: User = await userService.getUserById(id);
+    return response.status(200).json(user);
 };
 
 export const saveUser =  async(
     request: Request, 
     response: Response
 ): Promise<Response> => {
-        const validations = await  checkSchema({
-            email:{
-                isEmail: true,
-                notEmpty: true,
-                custom: {
-                    options: async(value) => {
-                        const userService: UserService = new UserService();
-                        try{
-                        const user = await userService.getUserByEmail(value);
-                        if(user){
-                            return false;
-                        }
-                          return true;
-                      }catch(e:any){
-                            return true;
-                        }
-                    },
-                },
-            },
-            birthDate:{notEmpty:true},
-            name:{notEmpty:true, isLength:{
-                options:{
-                    min:7,
-                },
-                errorMessage:"Informe seu nome completo",
-            }, 
-          },
-          password:{
-            isLength:{
-                options:{
-                    min:8,
-                    max:20,
-                },
-                errorMessage:"Sua senha deve conter entre 8 e 20 caracteres"
-            },
-            notEmpty: true,
-          },
-          gender: {
-            notEmpty:true,
-            custom:{
-                options:(value) => {
-                    return ["Male","Female"].includes(value);
-                },
-            },
-          },
-        }).run(request);
-        const errosArray = [];
-        for(let validation of validations){
-            if(validation.isEmpty()){
-                continue;
-            }
-            errosArray.push(...validation.array());
-        }
-
-        if(errosArray.length > 0){
-            return response.status(422).json({
-                message: "Ta viajando parça?",
-                errors: errosArray,
-            });
-        }
         const data = request.body;
         const birthDateArray = data.birthDate.split("-");
 

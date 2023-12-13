@@ -1,6 +1,7 @@
 import  express  from "express";
 import cors from "cors";
 import routesV1 from "./routes/routesV1";
+import { exceptionHandler } from "./middlewares/exceptionHandler";
 
 const app = express();
 
@@ -12,7 +13,6 @@ app.use((req,res,next) => {
   console.log(`[${req.method}] ${req.path}`);
   next();
 });
-
 
 app.use(
    cors({
@@ -39,7 +39,8 @@ app.use((req,res) => {
     })
   );
 });
-
+ 
+app.use(exceptionHandler);
 app.listen(process.env.PORT,() => {
     console.log(
         `Servidor executando em: ${process.env.HOST}: ${process.env.PORT}`

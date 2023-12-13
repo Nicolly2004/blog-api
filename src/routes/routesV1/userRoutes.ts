@@ -1,11 +1,12 @@
 import { Router } from "express";
 import * as userController  from "../../controllers/UserControllers";
-import { checkSchema } from "express-validator";
-import { UserService } from "../../services/userService";
+import { exceptionHandler } from "../../middlewares/exceptionHandler";
+import { requestValidation } from "../../middlewares/requestValidation";
+import { createUser } from "../../validations/createUser";
 
 const userRoutes = Router();
 
-userRoutes.post("/users",userController.saveUser);
+userRoutes.post("/users",requestValidation(createUser),userController.saveUser);
 userRoutes.get("/users",userController.getUsers)
 userRoutes.get("/users/:id",userController.getUser);
 

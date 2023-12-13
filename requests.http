@@ -22,5 +22,5 @@ Content-Type: application/json
 GET http://127.0.0.1:3000/api/v1/users HTTP/1.1
 ###
 
-GET http://127.0.0.1:3000/api/v1/users/5c09630e-499c-4ada-a3de-61743412c842 HTTP/1.1
+GET http://127.0.0.1:3000/api/v1/users/5ccc09630e-499c-4ada-a3de-61743412c842 HTTP/1.1
 ###
