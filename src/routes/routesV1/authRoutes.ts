@@ -1,10 +1,10 @@
-import express from 'express'
+import { Router } from 'express'
+import { requestValidation } from '../../middlewares/requestValidation';
+import { loginValidation } from '../../validations/loginValidation';
+import { login } from '../../controllers/UserControllers';
 
-const authRoutes = express.Router();
+const authRoutes = Router();
 
-authRoutes.post("/users/login",(req,res) => {
-    res.send("Realiza Login.")
-});
-
+authRoutes.post("/login", requestValidation(loginValidation),login);
 
 export {authRoutes};

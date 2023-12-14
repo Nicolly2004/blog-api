@@ -10,7 +10,12 @@ export const requestValidation = (validationSchema: any) => {
         if(validation.isEmpty()){
             continue;
         }
-        errosArray.push(...validation.array());
+        errosArray.push(...validation.array().map((inputFail:any) => {
+            return {
+                error: inputFail.msg,
+                input: inputFail.path
+            };
+        }));
     }
 
     if(errosArray.length > 0){

@@ -1,10 +1,18 @@
+import { randomUUID } from 'crypto';
 import { NotFoundException } from '../exceptions/NotFoundException';
 import { PasswordEncoder } from './PasswordEncoder';
 import { PrismaClient, User} from "@prisma/client";
+import * as jwt from "jsonwebtoken"
 
 interface StoreUser extends Omit<User, "id"|"createdAt"|"updatedAt" > {}
 interface UpdateUser extends Partial<User> {}
-
+interface PayloadJwt{
+    iat:number;
+    jti:string;
+    sub: string;
+    email: string;
+    exp: number;
+}
 
 export class UserService {
     private readonly passwordEncoder: PasswordEncoder;
@@ -68,5 +76,23 @@ export class UserService {
                 id,
             },
         });
+    }
+
+    signToken(user:User): string {
+        return jwt.sign({
+            jti: randomUUID(),
+            sub: user.id,
+            iat: Math.floor(Date.now() / 1000) - 30,
+            email: user.email,
+        }, 
+        process.env.JWT_SECRET as string,
+        {
+            expiresIn: `${process.env.JWT_EXPIRATION}h`,
+        }
+        );
+    };
+
+    verifyToken(token:string): PayloadJwt {
+        return jwt.verify(token,process.env.JWT_SECRET as string) as PayloadJwt;
     }
 }

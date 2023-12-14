@@ -10,16 +10,18 @@ Content-Type: application/json
 }
 ### 
 
-POST http://127.0.0.1:3000/api/v1/users/login HTTP/1.1
+POST http://127.0.0.1:3000/api/v1/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "nicolly123@gmail.com",
-    "password": "123456789",
+    "email": "nicolly124@gmail.com",
+    "password": "123456789"
 }
 ###
 
 GET http://127.0.0.1:3000/api/v1/users HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyZjdkOWRiNC1mMTM5LTQzYmQtOTE4OC1kZjIyNTZlOGJjOWYiLCJzdWIiOiI1YzA5NjMwZS00OTljLTRhZGEtYTNkZS02MTc0MzQxMmM4NDIiLCJpYXQiOjE3MDI1MTAxOTcsImVtYWlsIjoibmljb2xseTEyNEBnbWFpbC5jb20iLCJleHAiOjE3MDI1MTczOTd9.bL7THfjohREKOKWmq1MIJNOvHV43sRt59S4AeMCVaVw
+
 ###
 
 GET http://127.0.0.1:3000/api/v1/users/5ccc09630e-499c-4ada-a3de-61743412c842 HTTP/1.1
