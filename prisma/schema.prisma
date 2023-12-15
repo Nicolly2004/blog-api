@@ -40,6 +40,6 @@ model Media {
   path String
   post Post @relation(fields: [postId],references: [id])
   postId String
-  cretedAt DateTime @default(now())
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

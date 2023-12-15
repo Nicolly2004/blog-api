@@ -26,3 +26,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyZjdkOWRiN
 
 GET http://127.0.0.1:3000/api/v1/users/5ccc09630e-499c-4ada-a3de-61743412c842 HTTP/1.1
 ###
+
+POST http://127.0.0.1:3000//api/v1/posts HTTP/1.1
+Authorization: Bearer
+
+{
+    "images": ["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAJCAYAAAAPU20uAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABZSURBVChTbY5bDoAwCARZ/j2c9z+LRZZ2K0YnmUBbHsVxjrAfhqOiX4B1+UCRbdSVSBsrLjwirEsYdPa6aago55RZMJPuawK4M/W87Iq9YnY9iv3JL1wHuwE8m0RIOtWIDQAAAA5lWElmTU0AKgAAAAgAAAAAAAAA0lOTAAAAAElFTkSuQmCC"],
+    "title": "Poste legal sobre o ponto azul",
+    "content": "Lorem ipsum dolor sic aet"
+}
+###
